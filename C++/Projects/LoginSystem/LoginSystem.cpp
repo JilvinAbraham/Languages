@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-#include<unordered_map>
 using namespace std;
 
 void home();
@@ -12,7 +11,6 @@ int main() {
 	home();
 
 	return 0;
-
 }
 
 void home() {
@@ -20,7 +18,8 @@ void home() {
 	int choice = 0;
 
 	cout << "\n1. Login\n";
-	cout << "2. Register\n\n";
+	cout << "2. Register\n";
+	cout << "3. Exit\n\n";
 
 	cout << "Enter your choice: ";
 	cin >> choice;
@@ -33,20 +32,21 @@ void home() {
 		system("cls");
 		registerUser();
 	}
+	else if(choice == 3) {
+		exit(0);
+	}
 	else {
 		cout << "\nInvalid choice\n";
 		system("cls");
 		home();
 	}
-
-
-
 }
+
 
 void loginUser() {
 
-	string username, password,mytext;
-	vector<string> user;
+	string username, password;
+	string password1;
 
 	cout << "\nLOGIN\n\n";
 	cout << "Enter your username:";
@@ -60,12 +60,12 @@ void loginUser() {
 	ifstream myfile;
 	myfile.open(filename);
 	if (myfile) {
-		while (getline(myfile, mytext)) {
-			user.push_back(mytext);
+		while (getline(myfile, password1)) {
+
 		}
 
-		if (user[1] == password) {
-			cout << "User is successfully logged in.\n";
+		if (password1 == password) {
+			cout << "\nUser is successfully logged in.\n";
 		}
 		else {
 			cout << "Password is incorrect.\n";
@@ -73,13 +73,8 @@ void loginUser() {
 	}
 	else {
 		cout << "User doesnt exist";
-	}
-
-
-		
+	}		
 	home();
-
-
 }
 
 void registerUser() {
@@ -99,8 +94,7 @@ void registerUser() {
 
 	// Creating a file for each user and storing password and username in it
 	string filename = username + ".txt";
-	ofstream myfile(filename);
-	myfile << username<<"\n";
+	ofstream myfile(filename);	
 	myfile << password;
 	myfile.close();
 
