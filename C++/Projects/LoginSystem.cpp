@@ -5,7 +5,7 @@ using namespace std;
 void home();
 void loginUser();
 void registerUser();
-unordered_map<string, string> userDetails;
+
 
 int main() {
 
@@ -26,13 +26,17 @@ void home() {
 	cin >> choice;
 
 	if (choice == 1) {
+		system("cls");
 		loginUser();
 	}
 	else if(choice == 2) {
+		system("cls");
 		registerUser();
 	}
 	else {
-		cout << "Invalid choice\n";
+		cout << "\nInvalid choice\n";
+		system("cls");
+		home();
 	}
 
 
@@ -42,19 +46,16 @@ void home() {
 void loginUser() {
 
 	string username, password;
+	vector<string> user;
+
 	cout << "\nLOGIN\n\n";
 	cout << "Enter your username:";
 	cin >> username;
 
 	cout << "Enter your password: ";
 	cin >> password;
-
-	if (userDetails[username] == password) {
-		cout << "\nYou are successfully logged in";
-	}
-	else {
-		cout << "\nIncorrect username or password";
-	}
+		
+	home();
 
 
 }
@@ -63,7 +64,7 @@ void registerUser() {
 
 	string name,username, password;
 
-	cout << "\nRegister\n\n";
+	cout << "\nREGISTER\n\n";
 	cout << "Enter your name:";
 	cin.ignore();
 	getline(cin, name);
@@ -74,8 +75,16 @@ void registerUser() {
 	cout << "Enter your password: ";
 	cin >> password;
 
-	userDetails[username] = password;
+	
 
+	string filename = username + ".txt";
+	ofstream myfile(filename);
+	myfile << username<<"\n";
+	myfile << password;
+	myfile.close();
+
+	cout << "\nUser is created successfully\n";
+	
 	home();
 
 }
