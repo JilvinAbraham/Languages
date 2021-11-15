@@ -65,7 +65,8 @@ void registerUser() {
 
 	cout << "\nRegister\n\n";
 	cout << "Enter your name:";
-	cin >> username;
+	cin.ignore();
+	getline(cin, name);
 
 	cout << "Enter your username:";
 	cin >> username;
