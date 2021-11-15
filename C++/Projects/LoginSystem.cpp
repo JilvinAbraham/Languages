@@ -45,7 +45,7 @@ void home() {
 
 void loginUser() {
 
-	string username, password;
+	string username, password,mytext;
 	vector<string> user;
 
 	cout << "\nLOGIN\n\n";
@@ -54,6 +54,28 @@ void loginUser() {
 
 	cout << "Enter your password: ";
 	cin >> password;
+
+
+	string filename = username + ".txt";
+	ifstream myfile;
+	myfile.open(filename);
+	if (myfile) {
+		while (getline(myfile, mytext)) {
+			user.push_back(mytext);
+		}
+
+		if (user[1] == password) {
+			cout << "User is successfully logged in.\n";
+		}
+		else {
+			cout << "Password is incorrect.\n";
+		}
+	}
+	else {
+		cout << "User doesnt exist";
+	}
+
+
 		
 	home();
 
@@ -73,18 +95,16 @@ void registerUser() {
 	cin >> username;
 
 	cout << "Enter your password: ";
-	cin >> password;
+	cin >> password;	
 
-	
-
+	// Creating a file for each user and storing password and username in it
 	string filename = username + ".txt";
 	ofstream myfile(filename);
 	myfile << username<<"\n";
 	myfile << password;
 	myfile.close();
 
-	cout << "\nUser is created successfully\n";
-	
+	cout << "\nUser is created successfully\n";	
 	home();
 
 }
